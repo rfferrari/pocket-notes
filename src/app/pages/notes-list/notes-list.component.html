@@ -1,3 +1,12 @@
-<p>
-  notes-list works!
-</p>
+@if(notes.length > 0) {
+  <ion-list>
+    <ion-item *ngFor="let note of notes" [routerLink]="['/note', note.id]">
+      <ion-label>
+        <h2>{{ note.title }}</h2>
+        <p>{{ note.content | slice:0:100 }}...</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+} @else {
+  <p>No notes found. Create a new note to get started!</p>
+}
