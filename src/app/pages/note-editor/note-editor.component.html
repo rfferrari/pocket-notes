@@ -1,3 +1,5 @@
-<p>
-  note-editor works!
-</p>
+<form [formGroup]="noteForm">
+  <ion-input formControlName="title" placeholder="Title"></ion-input>
+  <ion-textarea formControlName="content" placeholder="Content"></ion-textarea>
+  <ion-button (click)="saveNote()">Save</ion-button>
+</form>
