@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Note } from 'src/app/models/note.model';
+import { Note } from 'src/app/features/note/models/note.model';
 import { IonList, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { CommonModule, SlicePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';

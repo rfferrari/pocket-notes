@@ -1,6 +1,6 @@
 @if(notes.length > 0) {
   <ion-list>
-    <ion-item *ngFor="let note of notes" [routerLink]="['/note', note.id]">
+    <ion-item *ngFor="let note of notes" [routerLink]="['/notes', note.id]">
       <ion-label>
         <h2>{{ note.title }}</h2>
         <p>{{ note.content | slice:0:100 }}...</p>
