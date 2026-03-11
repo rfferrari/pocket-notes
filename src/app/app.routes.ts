@@ -1,8 +1,24 @@
 import { Routes } from '@angular/router';
+import { LayoutComponent } from './shared/layout/layout.component';
 
 export const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'notes',
+        pathMatch: 'full',
+      },
+      {
+        path: 'notes', 
+        loadComponent: () => import('../app/pages/notes-list/notes-list.component').then((m) => m.NotesListComponent),
+      }
+    ]
   },
+  {
+    path: '**',
+    redirectTo: 'notes',
+  }
 ];
