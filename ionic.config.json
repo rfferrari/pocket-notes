@@ -1,0 +1,7 @@
+{
+  "name": "pocket-notes",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
