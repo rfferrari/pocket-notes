@@ -8,7 +8,7 @@ import { Note } from "src/app/features/note/models/note.model";
 })
 export class NotesService {
 
-  private api = 'http://localhost:3000/reimbursements';
+  private api = 'http://localhost:3000/notes';
 
   constructor(private http: HttpClient) {}
 
