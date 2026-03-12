@@ -1,5 +1,14 @@
 <form [formGroup]="noteForm">
-  <ion-input formControlName="title" placeholder="Title"></ion-input>
+  <ion-row>
+    <ion-col> 
+      <ion-input formControlName="title" placeholder="Title"></ion-input>
+    </ion-col>
+    <ion-col size="auto">
+      <ion-button color="warning" (click)="favoriteNote()">
+        <ion-icon slot="icon-only" [name]="favoriteIcon"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
   <ion-textarea formControlName="content" placeholder="Content"></ion-textarea>
   <ion-button (click)="saveNote()">Save</ion-button>
 </form>

@@ -3,9 +3,9 @@ import { Note } from 'src/app/features/note/models/note.model';
 import { IonList, IonItem, IonLabel, IonSearchbar, IonButton, IonIcon, AlertController, IonFab, IonFabButton } from "@ionic/angular/standalone";
 import { CommonModule, SlicePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { addIcons } from 'ionicons';
 import { NoteService } from '../../services/notes.service';
-import { createOutline, trashOutline, add } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
+import { createOutline, trashOutline, add, star, starOutline } from 'ionicons/icons';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class NotesListComponent implements OnInit {
     private noteService: NoteService,
     private alertController: AlertController
   ) {
-    addIcons({ add, 'create-outline': createOutline, 'trash-outline': trashOutline });
+    addIcons({ add, star, 'star-outline': starOutline, 'create-outline': createOutline, 'trash-outline': trashOutline });
   }
 
   ngOnInit() {
@@ -76,6 +76,16 @@ export class NotesListComponent implements OnInit {
     });
 
     await alert.present();
+  }
+
+  favoriteNote(id: string) {
+    const note = this.notes.find(note => note.id === id);
+    if (note) {
+      note.isFavorite = !note.isFavorite;
+      this.noteService.update(id, { isFavorite: note.isFavorite }).catch(error => {
+        console.error('Error updating favorite status:', error);
+      });
+    }
   }
 
 }
