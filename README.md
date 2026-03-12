@@ -52,6 +52,13 @@ The application currently exposes these main routes:
 Notes are stored locally using `@capacitor/preferences`.
 There is no backend API required for the current implementation.
 
+## Screenshots
+
+![List](https://github.com/rfferrari/pocket-notes/blob/master/docs/images/1-notes.png)
+![Delete](https://github.com/rfferrari/pocket-notes/blob/master/docs/images/2-notes.png)
+![Search](https://github.com/rfferrari/pocket-notes/blob/master/docs/images/3-notes.png)
+![Edit](https://github.com/rfferrari/pocket-notes/blob/master/docs/images/4-notes.png)
+
 ## Getting Started
 
 ### Prerequisites
