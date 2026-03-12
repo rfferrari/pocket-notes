@@ -14,10 +14,11 @@
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    gap: 16px;
 }
 
 .title-row {
-    align-items: end;
+    align-items: flex-end;
 }
 
 ion-input.custom-input,
@@ -27,6 +28,9 @@ ion-textarea.custom-textarea {
     --border: 1px solid var(--border-ui);
     --border-radius: 12px;
     --color: var(--text-main);
+    --placeholder-color: var(--text-muted);
+    --highlight-color-focused: var(--primary-color);
+    --highlight-color-valid: var(--primary-color);
     --padding-bottom: 10px;
     --padding-end: 10px;
     --padding-start: 10px;
@@ -41,8 +45,10 @@ ion-textarea.custom-textarea {
     resize: none;
 }
 
-.custom-title{
+.custom-title {
     padding-bottom: 10px;
+    color: var(--text-main);
+    font-weight: 600;
 }
 
 .input-group {
@@ -60,6 +66,7 @@ ion-textarea.custom-textarea {
     --background-focused: rgba(48, 140, 232, 0.25);
     color: var(--primary-color);
     transition: background 0.2s;
+    margin-bottom: 2px;
 
     &.active {
         --background: rgba(48, 140, 232, 0.25);
@@ -67,12 +74,12 @@ ion-textarea.custom-textarea {
     }
 }
 
-// Footer Actions
 .action-footer {
     display: flex;
     gap: 12px;
     margin-top: auto;
-    padding: 24px 0;
+    padding: 24px 0 8px;
+    background: transparent;
 
     .btn {
         flex: 1;
@@ -88,18 +95,18 @@ ion-textarea.custom-textarea {
         justify-content: center;
 
         &.btn-secondary {
-            --background: #1e293b;
-            --background-hover: #334155;
-            --background-activated: #334155;
-            --background-focused: #334155;
+            --background: var(--bg-card);
+            --background-hover: var(--border-color);
+            --background-activated: var(--border-color);
+            --background-focused: var(--border-color);
             color: var(--text-main);
         }
 
         &.btn-primary {
             --background: var(--primary-color);
-            --background-hover: var(btn-primary-hover);
-            --background-activated: var(btn-primary-focused);
-            --background-focused: var(btn-primary-focused);
+            --background-hover: var(--btn-primary-hover);
+            --background-activated: var(--btn-primary-focused);
+            --background-focused: var(--btn-primary-focused);
             --box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
             --color: white;
 

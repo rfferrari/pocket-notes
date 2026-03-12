@@ -6,8 +6,12 @@
       </ion-input>
     </ion-col>
     <ion-col size="auto">
-      <ion-button class="fav-button" [class.active]="noteForm.get('isFavorite')?.value" (click)="favoriteNote()">
-        <ion-icon slot="icon-only" [name]="favoriteIcon"></ion-icon>
+      <ion-button class="fav-button" [class.active]="!noteForm.get('isFavorite')?.value" (click)="favoriteNote()">
+      @if(noteForm.get('isFavorite')?.value){
+        <ion-icon slot="icon-only" name="star-outline"></ion-icon>
+      } @else {
+        <ion-icon slot="icon-only" name="star"></ion-icon>
+      }
       </ion-button>
     </ion-col>
   </ion-row>

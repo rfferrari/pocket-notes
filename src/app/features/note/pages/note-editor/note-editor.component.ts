@@ -111,10 +111,6 @@ export class NoteEditorComponent implements OnInit {
     this.noteForm.patchValue(currentNote);
   }
 
-  get favoriteIcon() {
-    return this.noteForm.get('isFavorite')?.value ? 'star' : 'star-outline';
-  }
-
   private async showSaveToast() {
     const toast = await this.toastController.create({
       message: 'Note saved successfully!',
