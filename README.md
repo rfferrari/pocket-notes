@@ -110,6 +110,10 @@ npx cap open android
 - `npm run watch` - build in watch mode
 - `npm run lint` - run linting
 
+## Demo
+
+[Pocket Notes Portal](https://pocket-notes-3e5a2c.netlify.app/notes)
+
 ## Notes
 
 - Notes are stored on the local device/browser storage.
