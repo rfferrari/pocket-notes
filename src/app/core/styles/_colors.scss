@@ -1,0 +1,14 @@
+:host {
+    --background: var(rgb(17 25 33 / 1), #fff);
+    --primary-color: #308ce8;
+    --bg-dark: #111921;
+    --bg-card: #1e293b;
+    --input-bg-dark: rgba(30, 41, 59, 0.5); 
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border-ui: rgba(48, 140, 232, 0.2); 
+    --border-color: #334155; 
+    --btn-white: rgba(255, 255, 255, 0.05);
+    --btn-primary-hover: rgba(48, 140, 232, 0.9);
+    --btn-primary-focused: rgba(48, 140, 232, 0.8);
+}

@@ -1,27 +1,38 @@
-<ion-searchbar [debounce]="500" placeholder="Search notes" (ionInput)="findNotesByTitle($event)"></ion-searchbar>
-<ion-list>
-  @if(notes.length > 0) {
-  <ion-item *ngFor="let note of notes">
-    <ion-label>
-      <h2>{{ note.title }}</h2>
-      <p>{{ note.content | slice:0:100 }}...</p>
-    </ion-label>
-    <ion-button slot="end" color="warning" (click)="favoriteNote(note.id)">
-      <ion-icon slot="icon-only" [name]="note.isFavorite ? 'star' : 'star-outline'"></ion-icon>
-    </ion-button>
-    <ion-button slot="end" [routerLink]="['/notes/edit/', note.id]">
-      <ion-icon slot="icon-only" name="create-outline"></ion-icon>
-    </ion-button>
-    <ion-button slot="end" color="danger" (click)="deleteNote(note.id)">
-      <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-    </ion-button>
+<ion-content fixed-slot-placement="before">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/notes/create']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-item class="sticky-search" lines="none">
+    <ion-searchbar [debounce]="500" placeholder="Search notes" (ionInput)="findNotesByTitle($event)"></ion-searchbar>
   </ion-item>
-  } @else {
-  <p>No notes found. Create a new note to get started!</p>
-  }
-</ion-list>
-<ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button [routerLink]="['/notes/create']">
-    <ion-icon name="add"></ion-icon>
-  </ion-fab-button>
-</ion-fab>
+  <ion-list class="notes-list">
+    @if(notes.length > 0) {
+    <ion-item *ngFor="let note of notes" class="note-card" lines="none">
+      <div class="note-content">
+        <ion-label class="note-info">
+          <div class="note-details">
+            <h3>{{ note.title }}</h3>
+            <p>{{ note.content | slice:0:15 }}...</p>
+          </div>
+        </ion-label>
+        <div class="note-actions" slot="end">
+          <ion-button class="btn-action" [class.active]="note.isFavorite" (click)="favoriteNote(note.id)"
+            [title]="note.isFavorite ? 'Unfavorite' : 'Favorite'">
+            <ion-icon [name]="note.isFavorite ? 'star' : 'star-outline'"></ion-icon>
+          </ion-button>
+          <ion-button class="btn-action hover-primary" [routerLink]="['/notes/edit/', note.id]">
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+          </ion-button>
+          <ion-button class="btn-action hover-danger" (click)="deleteNote(note.id)">
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </ion-item>
+    } @else {
+    <div class="text-center py-10 opacity-50">No notes found.</div>
+    }
+  </ion-list>
+</ion-content>

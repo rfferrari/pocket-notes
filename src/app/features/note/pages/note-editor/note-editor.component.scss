@@ -1,0 +1,111 @@
+@use '../../../../core/styles/colors';
+
+.custom-toolbar {
+    --background: transparent;
+    --color: var(--text-main);
+    --border-color: var(--input-bg-dark);
+    font-weight: 700;
+}
+
+.edit-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.title-row {
+    align-items: end;
+}
+
+ion-input.custom-input,
+ion-textarea.custom-textarea {
+    width: 100%;
+    --background: var(--input-bg-dark);
+    --border: 1px solid var(--border-ui);
+    --border-radius: 12px;
+    --color: var(--text-main);
+    --padding-bottom: 10px;
+    --padding-end: 10px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s ease;
+}
+
+ion-textarea.custom-textarea {
+    min-height: 300px;
+    resize: none;
+}
+
+.custom-title{
+    padding-bottom: 10px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.fav-button {
+    width: 50px;
+    height: 45px;
+    --border-radius: 12px;
+    --background: rgba(48, 140, 232, 0.1);
+    --background-hover: rgba(48, 140, 232, 0.2);
+    --background-activated: rgba(48, 140, 232, 0.25);
+    --background-focused: rgba(48, 140, 232, 0.25);
+    color: var(--primary-color);
+    transition: background 0.2s;
+
+    &.active {
+        --background: rgba(48, 140, 232, 0.25);
+        color: #eab308;
+    }
+}
+
+// Footer Actions
+.action-footer {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+    padding: 24px 0;
+
+    .btn {
+        flex: 1;
+        height: 48px;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.btn-secondary {
+            --background: #1e293b;
+            --background-hover: #334155;
+            --background-activated: #334155;
+            --background-focused: #334155;
+            color: var(--text-main);
+        }
+
+        &.btn-primary {
+            --background: var(--primary-color);
+            --background-hover: var(btn-primary-hover);
+            --background-activated: var(btn-primary-focused);
+            --background-focused: var(btn-primary-focused);
+            --box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+            --color: white;
+
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+    }
+}

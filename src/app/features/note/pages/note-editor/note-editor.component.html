@@ -1,14 +1,29 @@
-<form [formGroup]="noteForm">
-  <ion-row>
-    <ion-col> 
-      <ion-input formControlName="title" placeholder="Title"></ion-input>
+<form [formGroup]="noteForm" class="edit-container">
+  <ion-row class="title-row">
+    <ion-col class="input-group">
+      <ion-label class="custom-title">Note Title</ion-label>
+      <ion-input class="custom-input" formControlName="title" placeholder="Note Title">
+      </ion-input>
     </ion-col>
     <ion-col size="auto">
-      <ion-button color="warning" (click)="favoriteNote()">
+      <ion-button class="fav-button" [class.active]="noteForm.get('isFavorite')?.value" (click)="favoriteNote()">
         <ion-icon slot="icon-only" [name]="favoriteIcon"></ion-icon>
       </ion-button>
     </ion-col>
   </ion-row>
-  <ion-textarea formControlName="content" placeholder="Content"></ion-textarea>
-  <ion-button (click)="saveNote()">Save</ion-button>
+  <ion-row class="title-row">
+    <ion-col class="input-group">
+      <ion-label class="custom-title">Note Content</ion-label>
+      <ion-textarea class="custom-textarea" formControlName="content" placeholder="Content">
+      </ion-textarea>
+    </ion-col>
+  </ion-row>
+  <ion-footer class="action-footer">
+    <ion-button class="btn btn-secondary" (click)="cancel()">
+      <span>Cancel</span>
+    </ion-button>
+    <ion-button class="btn btn-primary" (click)="saveNote()">
+      <span>Save Changes</span>
+    </ion-button>
+  </ion-footer>
 </form>

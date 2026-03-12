@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Note } from 'src/app/features/note/models/note.model';
-import { IonList, IonItem, IonLabel, IonSearchbar, IonButton, IonIcon, AlertController, IonFab, IonFabButton } from "@ionic/angular/standalone";
+import { IonList, IonItem, IonLabel, IonSearchbar, IonButton, IonIcon, AlertController, IonFab, IonFabButton, IonContent } from "@ionic/angular/standalone";
 import { CommonModule, SlicePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { NoteService } from '../../services/notes.service';
@@ -12,7 +12,7 @@ import { createOutline, trashOutline, add, star, starOutline } from 'ionicons/ic
   selector: 'app-notes-list',
   templateUrl: './notes-list.component.html',
   styleUrls: ['./notes-list.component.scss'],
-  imports: [IonFabButton, IonFab, IonIcon, IonButton, CommonModule, IonSearchbar, IonList, IonItem, IonLabel, SlicePipe, RouterLink],
+  imports: [IonContent, IonFabButton, IonFab, IonIcon, IonButton, CommonModule, IonSearchbar, IonList, IonItem, IonLabel, SlicePipe, RouterLink],
 })
 export class NotesListComponent implements OnInit {
   notes: Note[] = [];
@@ -35,17 +35,39 @@ export class NotesListComponent implements OnInit {
       this.loadNotes();
       return;
     }
-    this.notes = this.notes.filter(note => note.title.toLowerCase().includes(query));
+    this.notes = this.sortNotes(
+      this.notes.filter(note => note.title.toLowerCase().includes(query))
+    );
   }
 
   private loadNotes() {
     try {
       this.noteService.getAll().then((notes) => {
-        this.notes = notes;
+        this.notes = this.sortNotes(notes);
       });
     } catch (error) {
       console.error('Error loading notes:', error);
     }
+  }
+
+  private sortNotes(notes: Note[]): Note[] {
+    return [...notes].sort((firstNote, secondNote) => {
+      const favoriteOrder = Number(secondNote.isFavorite) - Number(firstNote.isFavorite);
+
+      if (favoriteOrder !== 0) {
+        return favoriteOrder;
+      }
+
+      return this.getTimestamp(secondNote.updatedAt) - this.getTimestamp(firstNote.updatedAt);
+    });
+  }
+
+  private getTimestamp(dateValue: Date | string | undefined): number {
+    if (!dateValue) {
+      return 0;
+    }
+
+    return new Date(dateValue).getTime();
   }
 
   async deleteNote(id: string) {
@@ -82,7 +104,10 @@ export class NotesListComponent implements OnInit {
     const note = this.notes.find(note => note.id === id);
     if (note) {
       note.isFavorite = !note.isFavorite;
-      this.noteService.update(id, { isFavorite: note.isFavorite }).catch(error => {
+      note.updatedAt = new Date();
+      this.noteService.update(id, { isFavorite: note.isFavorite, updatedAt: note.updatedAt})
+      .then(()=>this.loadNotes())
+      .catch(error => {
         console.error('Error updating favorite status:', error);
       });
     }

@@ -4,16 +4,16 @@ export const NOTE_ROUTES: Routes = [
   {
     path: '',
     loadComponent: () => import('./pages/notes-list/notes-list.component').then((m) => m.NotesListComponent),
-    title: 'Minhas Notas | Pocket Notes',
+    title: 'Notes | Pocket Notes',
   },
   {
     path: 'edit/:id',
     loadComponent: () => import('./pages/note-editor/note-editor.component').then((m) => m.NoteEditorComponent),
-    title: 'Editar Nota | Pocket Notes',
+    title: 'Edit | Pocket Notes',
   },
   {
     path: 'create',
     loadComponent: () => import('./pages/note-editor/note-editor.component').then((m) => m.NoteEditorComponent),
-    title: 'Nova Nota | Pocket Notes',
+    title: 'New | Pocket Notes',
   }
 ];
