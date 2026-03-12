@@ -1,0 +1,19 @@
+{
+  "notes": [
+    {
+      "id": "db1",
+      "title": "First Note",
+      "content": "This is the content of the first note.",
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "db2",
+      "title": "Second Note",
+      "content": "This is the content of the second note.",
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
