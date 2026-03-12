@@ -1,0 +1,102 @@
+@use '../../../../core/styles/colors';
+
+.sticky-search {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.notes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 1rem;
+    margin-bottom: 5rem;
+    margin-top: 1rem;
+}
+
+.note-card {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+    --background: var(--input-bg-dark);
+
+    .note-content {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 16px;
+    }
+
+    .note-info {
+        display: flex;
+        gap: 16px;
+        flex: 1;
+
+        .note-type-icon {
+            color: var(--primary-color);
+            margin-top: 4px;
+        }
+
+        .note-details {
+            h3 {
+                font-size: 1rem;
+                font-weight: 600;
+                margin: 0;
+            }
+
+            p {
+                font-size: 0.875rem;
+                color: var(--text-muted);
+                margin: 4px 0 0;
+                overflow: hidden;
+            }
+        }
+    }
+}
+
+// Actions
+.note-actions {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.btn-icon,
+.btn-action {
+    --background: transparent;
+    --background-hover: var(--btn-white);
+    --background-activated: var(--btn-white);
+    --background-focused: transparent;
+    border: none;
+    color: var(--text-muted);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+}
+
+.btn-action {
+    &.active {
+        color: #eab308;
+    }
+
+    &.hover-primary:hover {
+        color: var(--primary-color);
+    }
+
+    &.hover-danger:hover {
+        color: #ef4444;
+    }
+}
+
+ion-fab-button {
+    --background: var(--primary-color);
+    --background-hover: var(--btn-primary-hover);
+    --background-activated: var(--btn-primary-focused);
+    --background-focused: var(--btn-primary-focused);
+    --box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    --color: white;
+}

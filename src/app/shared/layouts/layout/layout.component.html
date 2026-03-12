@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    @if(showBackButton()) {
+      <ion-buttons slot="start">
+        <ion-back-button default-href="/notes"></ion-back-button>
+      </ion-buttons>
+    }
+    <ion-title>
+      Pocket Notes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [scrollY]="false">
+  <router-outlet></router-outlet>
+</ion-content>
