@@ -15,8 +15,8 @@ export class NoteEditorComponent implements OnInit {
     id: new FormControl(),
     title: new FormControl('', [Validators.required]),
     content: new FormControl('', [Validators.required]),
-    createdAt: new FormControl(new Date()),
-    updatedAt: new FormControl(new Date()),
+    createdAt: new FormControl(),
+    updatedAt: new FormControl(),
   });
 
   constructor(
@@ -38,23 +38,46 @@ export class NoteEditorComponent implements OnInit {
       return;
     }
     
-    const noteData = this.noteForm.getRawValue();
-    if (noteData.id) {
-      this.noteService.update(noteData.id, noteData).subscribe(() => this.showSaveToast());
-    } else {
-      this.noteService.create(noteData).subscribe(() => this.showSaveToast());
+    try{
+      const noteData = this.noteForm.getRawValue();
+      if (noteData.id) {
+        noteData.updatedAt = new Date();
+        this.noteService.update(noteData.id, noteData).then(() => this.showSaveToast());
+      } else {
+        noteData.id = crypto.randomUUID();
+        noteData.createdAt = new Date();
+        noteData.updatedAt = new Date();
+        this.noteService.create(noteData).then(() => this.showSaveToast());
+      }
+    } catch(error){
+      console.error('Error saving note:', error);
+      this.showErrorToast();
     }
   }
 
   getNoteById(id: string) {
-    this.noteService.getById(id).subscribe((note) => {
-      this.noteForm.patchValue(note);
-    });
+    try{
+      this.noteService.getById(id).then((note) => {
+        this.noteForm.patchValue(note);
+      });
+    } catch(error){
+      console.error('Error fetching note:', error);
+    }
   }
 
-  async showSaveToast(){
+  private async showSaveToast(){
     const toast = await this.toastController.create({
       message: 'Note saved successfully!',
+      duration: 1500,
+      position: 'bottom',
+    });
+
+    await toast.present();
+  }
+
+  private async showErrorToast(){
+    const toast = await this.toastController.create({
+      message: 'An error occurred while saving the note.',
       duration: 1500,
       position: 'bottom',
     });
