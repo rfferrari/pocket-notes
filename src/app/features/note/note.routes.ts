@@ -12,7 +12,7 @@ export const NOTE_ROUTES: Routes = [
     title: 'Editar Nota | Pocket Notes',
   },
   {
-    path: 'new',
+    path: 'create',
     loadComponent: () => import('./pages/note-editor/note-editor.component').then((m) => m.NoteEditorComponent),
     title: 'Nova Nota | Pocket Notes',
   }

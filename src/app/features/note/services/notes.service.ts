@@ -56,6 +56,7 @@ export class NoteService {
   async delete(id: string): Promise<void> {
     const notes = await this.getAll();
     const updatedNotes = notes.filter(note => note.id !== id);
+    console.log('Updated notes after deletion:', updatedNotes);
     await Preferences.set({
       key: NOTES_KEY,
       value: JSON.stringify(updatedNotes),

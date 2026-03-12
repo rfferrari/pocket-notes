@@ -1,12 +1,24 @@
 <ion-searchbar [debounce]="500" placeholder="Search notes" (ionInput)="findNotesByTitle($event)"></ion-searchbar>
 <ion-list>
-  @if(notes.length > 0) { <ion-item *ngFor="let note of notes" [routerLink]="['/notes/edit/', note.id]">
+  @if(notes.length > 0) {
+  <ion-item *ngFor="let note of notes">
     <ion-label>
       <h2>{{ note.title }}</h2>
       <p>{{ note.content | slice:0:100 }}...</p>
     </ion-label>
+    <ion-button slot="end" [routerLink]="['/notes/edit/', note.id]">
+      <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" color="danger" (click)="deleteNote(note.id)">
+      <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+    </ion-button>
   </ion-item>
   } @else {
   <p>No notes found. Create a new note to get started!</p>
   }
 </ion-list>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button [routerLink]="['/notes/create']">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
