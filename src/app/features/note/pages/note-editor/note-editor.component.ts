@@ -90,6 +90,8 @@ export class NoteEditorComponent implements OnInit {
         }
       })
       await alert.present();
+    } else {
+      this.router.navigate(['/notes']);
     }
   }
 
